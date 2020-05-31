@@ -8,8 +8,14 @@
 
 Build success on Matlab R2015b & R2019b.
 
-Run `window.fig`.
+Run `window.m`.
+
+Plase switch your MATLAB locale to GBK.
 
 ## License
 
 All Rights Reserved.
+
+## Links
+
+ - https://zhuanlan.zhihu.com/p/27474514
