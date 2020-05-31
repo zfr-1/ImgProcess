@@ -1,0 +1,17 @@
+# Build Files
+Build
+readme.txt
+requiredMCRProducts.txt
+mccExcludedFiles.log
+
+# Product
+window.exe
+
+# Images & Data
+img
+old_img
+data
+
+# Backup Files
+backup
+window.asv
