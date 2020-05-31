@@ -81,6 +81,13 @@ function radiobutton1_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of radiobutton1
 
+function radiobutton2_Callback(hObject, eventdata, handles)
+% hObject    handle to radiobutton1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of radiobutton2
+
 
 % --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
@@ -103,6 +110,8 @@ end
 
 % --- Executes on button press in pushbutton2.
 function pushbutton2_Callback(hOject, eventdata, handles)
+if get(handles.radiobutton1,'value')
+    set(handles.text4,'String', '11')
 % hObject    handle to pushbutton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -173,3 +182,7 @@ axes(handles.axes10);
 Serch = imread(IndexOfPoint{(m-8),2});
 Serch = Serch(:,:,1:3);
 imshow(Serch);
+elseif get(handles.radiobutton2,'value')
+    set(handles.text4,'String', '22')
+    
+end
