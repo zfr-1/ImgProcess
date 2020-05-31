@@ -22,7 +22,7 @@ function varargout = window(varargin)
 
 % Edit the above text to modify the response to help window
 
-% Last Modified by GUIDE v2.5 31-May-2020 16:37:56
+% Last Modified by GUIDE v2.5 31-May-2020 22:53:53
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -72,7 +72,6 @@ function varargout = window_OutputFcn(hObject, eventdata, handles)
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
-
 % --- Executes on button press in radiobutton1.
 function radiobutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to radiobutton1 (see GCBO)
@@ -81,13 +80,13 @@ function radiobutton1_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of radiobutton1
 
+% --- Executes on button press in radiobutton1.
 function radiobutton2_Callback(hObject, eventdata, handles)
 % hObject    handle to radiobutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of radiobutton2
-
 
 % --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
@@ -110,19 +109,16 @@ end
 
 % --- Executes on button press in pushbutton2.
 function pushbutton2_Callback(hOject, eventdata, handles)
+OrginImage=getappdata(handles.pushbutton1,'OrginImage');
+ load('./data/data.mat');
+ [m,~]=size(hist_features);
+ IndexOfPoint=[];
 if get(handles.radiobutton1,'value')
-    set(handles.text4,'String', '11')
 % hObject    handle to pushbutton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-OrginImage=getappdata(handles.pushbutton1,'OrginImage');
-%if get(handles.btn_ch,'value')
-
-    load('./data/data.mat');
-    [m,~] = size(hist_features);
-    IndexOfPoint=[];
-    OrginImage_Gray=rgb2gray(OrginImage);
-    [Count1,~]=imhist(OrginImage_Gray);
+  OrginImage_Gray=rgb2gray(OrginImage);
+  [Count1,~]=imhist(OrginImage_Gray);
     
     for index = 1:m
         Count2 = hist_features{index,2};
@@ -137,8 +133,22 @@ OrginImage=getappdata(handles.pushbutton1,'OrginImage');
         IndexOfPoint{index,2}=PathData;
         
     end
+    IndexOfPoint=sortrows(IndexOfPoint);
 
-IndexOfPoint=sortrows(IndexOfPoint);
+
+elseif get(handles.radiobutton2,'value')
+StatxtureData= Istatxture;
+ColorData=IcolorMom;
+sc=colorMom(OrginImage)';
+sl=lbp(OrginImage)';
+ for i=1:m
+     PathData = hist_features{i,1};
+     IndexOfPoint{i,1}=CalDis(sc,ColorData(:,i))*0.5+CalDis(sl,StatxtureData(:,i))/1000000*0.5;
+     IndexOfPoint{i,2}=PathData;
+end
+        IndexOfPoint=sortrows(IndexOfPoint,-1);
+end
+
 axes(handles.axes2); 
 Serch = imread(IndexOfPoint{m,2});
 Serch = Serch(:,:,1:3);
@@ -182,7 +192,3 @@ axes(handles.axes10);
 Serch = imread(IndexOfPoint{(m-8),2});
 Serch = Serch(:,:,1:3);
 imshow(Serch);
-elseif get(handles.radiobutton2,'value')
-    set(handles.text4,'String', '22')
-    
-end
