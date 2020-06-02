@@ -1,3 +1,8 @@
+% Copyright (C) misaka00251 & ZFR - All Rights Reserved
+% Unauthorized copying of this file, via any medium is strictly prohibited
+% Proprietary and confidential
+% Written by misaka00251 <misaka00251@misakanet.cn>, June 2020
+
 function varargout = window(varargin)
 % WINDOW MATLAB code for window.fig
 %      WINDOW, by itself, creates a new WINDOW or raises the existing
@@ -22,7 +27,7 @@ function varargout = window(varargin)
 
 % Edit the above text to modify the response to help window
 
-% Last Modified by GUIDE v2.5 31-May-2020 22:53:53
+% Last Modified by GUIDE v2.5 02-Jun-2020 10:58:56
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -93,7 +98,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-[filename,Pathname] = uigetfile({'*.jpg';'*.png';'*.bmp';'*.tif';},'Ñ¡ÔñÍ¼Ïñ');
+[filename,Pathname] = uigetfile({'*.jpg';'*.png';'*.bmp';'*.tif';},'Ñ¡ï¿½ï¿½Í¼ï¿½ï¿½');
 str = [Pathname filename];
 if Pathname ~= 0
     OrginImage_O = imread(str);
@@ -192,3 +197,33 @@ axes(handles.axes10);
 Serch = imread(IndexOfPoint{(m-8),2});
 Serch = Serch(:,:,1:3);
 imshow(Serch);
+
+
+% --- Executes on button press in pushbutton4.
+function pushbutton4_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+matname = 'data/data.mat';
+
+path = './img/';
+filename = [dir([path, '*.jpg']);dir([path, '*.png'])];
+pic_filename = {filename.name};
+num=length(pic_filename);
+Istatxture = zeros(256,num);
+IcolorMom = zeros(225,num);
+
+%pictures = zeros(length(pic_filename),90,90,3);
+for i = 1 :num
+    path_data=char(strcat(path,pic_filename(i)));
+    picture = imread(path_data);
+    Istatxture(:,i)=lbp(picture);
+    IcolorMom(:,i)=colorMom(picture);
+
+   % pictures(i,:,:,:)=picture;
+   img=rgb2gray(picture);
+   count=imhist(img);
+   hist_features{i,1}=path_data;
+   hist_features{i,2}=count;
+end
+ save(matname, 'hist_features', 'Istatxture', 'IcolorMom');

@@ -12,6 +12,8 @@ Build success on Matlab R2015b & R2019b.
 
 Run `window.m`.
 
+First, you need to copy your images to `img` folder. Then, you need to manually create a `data` folder.
+
 Plase switch your MATLAB locale to GBK.
 
 ## License
