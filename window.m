@@ -146,9 +146,10 @@ StatxtureData= Istatxture;
 ColorData=IcolorMom;
 sc=colorMom(OrginImage)';
 sl=lbp(OrginImage)';
+theta=0.65;
  for i=1:m
      PathData = hist_features{i,1};
-     IndexOfPoint{i,1}=CalDis(sc,ColorData(:,i))*0.5+CalDis(sl,StatxtureData(:,i))/1000000*0.5;
+     IndexOfPoint{i,1}=CalDis(sc,ColorData(:,i))*theta+CalDis(sl,StatxtureData(:,i))/1000000*(1-theta);
      IndexOfPoint{i,2}=PathData;
 end
         IndexOfPoint=sortrows(IndexOfPoint,-1);
