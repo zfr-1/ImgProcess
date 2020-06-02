@@ -204,6 +204,9 @@ function pushbutton4_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton4 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+msg = msgbox({'依据电脑处理速度','可能需要等待一段时间……','请等待文件生成后操作！'},'提示信息','modal');
+msg_ = findobj(msg,'Type','text');
+set(msg_,'FontSize',10,'Unit','normal');
 matname = 'data/data.mat';
 
 path = './img/';
