@@ -230,3 +230,6 @@ for i = 1 :num
    hist_features{i,2}=count;
 end
  save(matname, 'hist_features', 'Istatxture', 'IcolorMom');
+msg = msgbox({'操作成功！'},'提示信息','modal');
+msg_ = findobj(msg,'Type','text');
+set(msg_,'FontSize',10,'Unit','normal');
