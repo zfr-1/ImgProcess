@@ -18,6 +18,10 @@ Plase switch your MATLAB locale to GBK.
 
 All Rights Reserved.
 
+## Others
+
+强烈谴责同系曾某的违法行为
+
 ## Links
 
  - https://zhuanlan.zhihu.com/p/27474514
