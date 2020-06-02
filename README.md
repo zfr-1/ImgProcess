@@ -18,10 +18,12 @@ Plase switch your MATLAB locale to GBK.
 
 All Rights Reserved.
 
-## Others
-
-强烈谴责同系曾某的违法行为
+You CANNOT modify or redistribute this code without explicit permission from the copyright holder. You however, CAN clone and view the code.
 
 ## Links
 
  - https://zhuanlan.zhihu.com/p/27474514
+
+## Others
+
+~~强烈谴责同系曾某的无视版权法行为。~~
